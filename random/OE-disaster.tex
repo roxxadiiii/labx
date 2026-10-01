@@ -1,0 +1,907 @@
+%% ============================================================
+%%  OE-disaster.tex
+%%  Beamer 16:9 presentation: 2026 Nepal-Tibet Floods
+%%  Colour scheme: Dark Rose Pine
+%%  Author: <your name>
+%% ============================================================
+
+\documentclass[aspectratio=169, 12pt]{beamer}
+
+%% ---- Packages -----------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{tikz}
+%\usepackage{fontawesome5}   % uncomment if fontawesome5 is installed
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{ragged2e}
+
+%% ---- Rose Pine Dark palette --------------------------------
+\definecolor{rpBase}    {HTML}{191724}
+\definecolor{rpSurface} {HTML}{1f1d2e}
+\definecolor{rpOverlay} {HTML}{26233a}
+\definecolor{rpMuted}   {HTML}{6e6a86}
+\definecolor{rpSubtle}  {HTML}{908caa}
+\definecolor{rpText}    {HTML}{e0def4}
+\definecolor{rpLove}    {HTML}{eb6f92}
+\definecolor{rpGold}    {HTML}{f6c177}
+\definecolor{rpRose}    {HTML}{ebbcba}
+\definecolor{rpPine}    {HTML}{31748f}
+\definecolor{rpFoam}    {HTML}{9ccfd8}
+\definecolor{rpIris}    {HTML}{c4a7e7}
+\definecolor{rpHighlightLow}  {HTML}{21202e}
+\definecolor{rpHighlightMid}  {HTML}{403d52}
+\definecolor{rpHighlightHigh} {HTML}{524f67}
+
+%% ---- Beamer theme base -------------------------------------
+\usetheme{default}
+\usecolortheme{default}
+\usefonttheme{professionalfonts}
+
+%% ---- Global colour overrides -------------------------------
+\setbeamercolor{normal text}       {fg=rpText,   bg=rpBase}
+\setbeamercolor{background canvas} {bg=rpBase}
+\setbeamercolor{structure}         {fg=rpIris}
+
+\setbeamercolor{frametitle}        {fg=rpRose,  bg=rpOverlay}
+\setbeamerfont{frametitle}         {size=\large, series=\bfseries}
+
+\setbeamercolor{title}             {fg=rpLove}
+\setbeamercolor{subtitle}          {fg=rpIris}
+\setbeamercolor{author}            {fg=rpFoam}
+\setbeamercolor{institute}         {fg=rpSubtle}
+\setbeamercolor{date}              {fg=rpMuted}
+
+\setbeamercolor{block title}       {fg=rpBase,   bg=rpPine}
+\setbeamercolor{block body}        {fg=rpText,   bg=rpHighlightLow}
+\setbeamercolor{block title alerted}{fg=rpBase,  bg=rpLove}
+\setbeamercolor{block body alerted} {fg=rpText,  bg=rpHighlightLow}
+\setbeamercolor{block title example}{fg=rpBase,  bg=rpGold}
+\setbeamercolor{block body example} {fg=rpText,  bg=rpHighlightLow}
+
+\setbeamercolor{itemize item}      {fg=rpLove}
+\setbeamercolor{itemize subitem}   {fg=rpGold}
+\setbeamercolor{itemize subsubitem}{fg=rpFoam}
+\setbeamertemplate{itemize item}{\textbullet}
+\setbeamertemplate{itemize subitem}{\textendash}
+
+\setbeamercolor{footline}          {fg=rpMuted,  bg=rpSurface}
+\setbeamercolor{headline}          {fg=rpMuted,  bg=rpSurface}
+\setbeamercolor{separation line}   {bg=rpHighlightMid}
+
+\setbeamercolor{section in toc}    {fg=rpIris}
+\setbeamercolor{subsection in toc} {fg=rpSubtle}
+
+\setbeamertemplate{navigation symbols}{}
+
+%% ---- Footer ------------------------------------------------
+\setbeamertemplate{footline}{%
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.45\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=2mm]{footline}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.40\paperwidth,ht=2.5ex,dp=1.125ex,center]{footline}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.15\paperwidth,ht=2.5ex,dp=1.125ex,rightskip=2mm,right]{footline}%
+			\usebeamerfont{date in head/foot}%
+			\insertframenumber{}/\inserttotalframenumber
+		\end{beamercolorbox}%
+	}%
+	\vskip0pt%
+}
+
+%% ---- Frame title rule --------------------------------------
+\setbeamertemplate{frametitle}{%
+	\nointerlineskip%
+	\begin{beamercolorbox}[wd=\paperwidth,ht=2.8ex,dp=1.2ex,leftskip=4mm]{frametitle}%
+		\usebeamerfont{frametitle}\insertframetitle%
+		\ifx\insertframesubtitle\empty\else%
+		\hspace{4pt}{\color{rpMuted}\small|\hspace{4pt}%
+			\usebeamerfont{framesubtitle}\insertframesubtitle}%
+		\fi%
+	\end{beamercolorbox}%
+	\nointerlineskip%
+	\begin{beamercolorbox}[wd=\paperwidth,ht=0.4pt]{separation line}\end{beamercolorbox}%
+}
+
+%% ---- Helper: dummy figure placeholder ----------------------
+%% Usage: \dummyfig{width_cm}{height_cm}{caption label text}
+\newcommand{\dummyfig}[3]{%
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\midx}{#1/2}
+		\pgfmathsetmacro{\midy}{#2/2}
+		\fill[rpHighlightMid] (0,0) rectangle (#1,#2);
+		\node[text=rpMuted, font=\tiny, align=center] at (\midx,\midy)
+		{[\,#3\,]};
+	\end{tikzpicture}%
+}
+
+%% ---- Meta-information --------------------------------------
+\title[2026 Nepal--Tibet Floods]{2026 Nepal--Tibet Floods}
+\subtitle{Bhotekoshi Disaster --- Causes, Impact \& Response}
+\author[OE Presentation]{Prepared for Open Elective}
+\institute{Department of Civil / Environmental Engineering}
+\date{September 30, 2026}
+
+%% ============================================================
+%%  DOCUMENT
+%% ============================================================
+\begin{document}
+	
+	%% ---- Title slide -------------------------------------------
+	{
+		\setbeamertemplate{footline}{}
+		\begin{frame}[plain]
+			\begin{tikzpicture}[remember picture, overlay]
+				\fill[rpOverlay] (current page.south west)
+				rectangle ([yshift=4.0cm]current page.south east);
+			\end{tikzpicture}
+			
+			\vspace{1.2cm}
+			\begin{center}
+				{\color{rpLove}\bfseries\LARGE 2026 Nepal--Tibet Floods}\\[10pt]
+				{\color{rpIris}\large Bhotekoshi / Rasuwa Disaster}\\[20pt]
+				\begin{tikzpicture}
+					\draw[rpGold, line width=0.8pt] (0,0) -- (6,0);
+				\end{tikzpicture}\\[20pt]
+				
+				{\color{rpFoam}\small Rasuwa \& Nuwakot Districts, Nepal
+					\textbullet\ Gyirong County, Tibet, China}\\[25pt]
+				
+				{\color{rpRose}\bfseries Presented by:}\\[10pt]
+				{\color{rpText}\small John Doe \hspace{4pt} (Enrollment No: 2026CE001)}\\[6pt]
+				{\color{rpText}\small Jane Smith \hspace{4pt} (Enrollment No: 2026CE002)}\\[25pt]
+				
+				{\color{rpSubtle}\footnotesize Prepared for Open Elective Presentation
+					\hspace{6pt}|\hspace{6pt} September 30, 2026}
+			\end{center}
+		\end{frame}
+	}
+	
+	%% ---- Table of Contents -------------------------------------
+	\begin{frame}{Outline}
+		\small
+		\setlength{\itemsep}{0pt}
+		\setlength{\parskip}{0pt}
+		\tableofcontents[hideallsubsections]
+	\end{frame}
+	
+	%% ============================================================
+	\section{Overview \& Key Statistics}
+	%% ============================================================
+	
+	\begin{frame}{At a Glance}
+		\begin{columns}[T]
+			\column{0.72\textwidth} % Increased width further to reduce line wrapping
+			\footnotesize % Reduced font size
+			\setlength{\itemsep}{2pt} % Tighter spacing between bullets
+			\begin{itemize}
+				\item \textbf{Date:} 26 August 2026 --- present
+				\item \textbf{Location:} Trishuli / Bhotekoshi river corridor, Nepal--China border
+				\item \textbf{Trigger:} Rock-ice avalanche from \textbf{Langtang Lirung} massif ($\sim$5{,}200\,m asl)
+				\item \textbf{Seismic signature:} $M_s$\,5.2 (USGS) / $M_w$\,5.7 (GFZ)
+				\item Also known as:\\
+				{\color{rpIris}\scriptsize Bhotekoshi Flood, Nepal--China Floods, Rasuwa Flood}
+			\end{itemize}
+			\vspace{2pt}
+			\begin{alertblock}{\scriptsize Scale of Destruction}
+				\scriptsize One of the deadliest glacier-collapse events in Himalayan history
+			\end{alertblock}
+			
+			\column{0.26\textwidth} % Narrower column for the figure
+			%% -------------------------------------------------------
+			%% FIGURE 1: gyirong_port_destruction.jpg
+			%% Replace \dummyfig with \includegraphics once you have the image.
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{4.0}{2.5}{gyirong\_port\_destruction.jpg} % Smaller figure
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[gyirong\_port\_destruction.jpg]}\\
+					CCTV surveillance footage: Gyirong Port border crossing engulfed by floodwater, 26 Aug 2026, seven minutes after the seismic event}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Key Statistics}
+		\begin{columns}[c]
+			\column{0.32\textwidth}
+			\begin{block}{$\dagger$\ Deaths}
+				\centering
+				\begin{minipage}[c][2.2cm][c]{0.9\linewidth}
+					\centering
+					\vspace{0pt}
+					{\color{rpLove}\bfseries\huge 1{,}494+}\\[6pt]
+					{\small 1{,}451 in Nepal\\43 in Tibet, China}
+					\vspace{0pt}
+				\end{minipage}
+			\end{block}
+			
+			\column{0.32\textwidth}
+			\begin{block}{$\star$\ Missing}
+				\centering
+				\begin{minipage}[c][2.2cm][c]{0.9\linewidth}
+					\centering
+					\vspace{0pt}
+					{\color{rpGold}\bfseries\huge 6{,}264+}\\[6pt]
+					{\small 5{,}745 in Nepal\\519 in Tibet, China}
+					\vspace{0pt}
+				\end{minipage}
+			\end{block}
+			
+			\column{0.32\textwidth}
+			\begin{block}{$+$\ Injured}
+				\centering
+				\begin{minipage}[c][2.2cm][c]{0.9\linewidth}
+					\centering
+					\vspace{0pt}
+					{\color{rpFoam}\bfseries\huge 9{,}287+}\\[6pt]
+					{\small Reported in Nepal}
+					\vspace{0pt}
+				\end{minipage}
+			\end{block}
+		\end{columns}
+		
+		\vspace{10pt}
+		
+		\begin{columns}[c]
+			\column{0.32\textwidth}
+			\begin{exampleblock}{Affected}
+				\centering
+				\begin{minipage}[c][2.2cm][c]{0.9\linewidth}
+					\centering
+					\vspace{0pt}
+					{\color{rpGold}\bfseries\Large 1.6 million}\\[6pt]
+					{\small People in Nepal}
+					\vspace{0pt}
+				\end{minipage}
+			\end{exampleblock}
+			
+			\column{0.32\textwidth}
+			\begin{exampleblock}{Foreign Missing}
+				\centering
+				\begin{minipage}[c][2.2cm][c]{0.9\linewidth}
+					\centering
+					\vspace{0pt}
+					{\color{rpGold}\bfseries\Large 35 nations}\\[6pt]
+					{\small 636 foreign nationals missing}
+					\vspace{0pt}
+				\end{minipage}
+			\end{exampleblock}
+			
+			\column{0.32\textwidth}
+			\begin{exampleblock}{\$ Damages (Nepal)}
+				\centering
+				\begin{minipage}[c][2.2cm][c]{0.9\linewidth}
+					\centering
+					\vspace{0pt}
+					{\color{rpGold}\bfseries\Large NPR 400B+}\\[6pt]
+					{\small $\approx$ USD 2.64 billion+}
+					\vspace{0pt}
+				\end{minipage}
+			\end{exampleblock}
+		\end{columns}
+	\end{frame}
+	
+	%% ============================================================
+	\section{Geography \& Background}
+	%% ============================================================
+	
+	\begin{frame}{The Region}
+		\begin{columns}[T]
+			\column{0.48\textwidth}
+			\textbf{Key Geographic Features}
+			\begin{itemize}
+				\item \textbf{Trishuli River} (upper: Bhotekoshi River)
+				drains south from the Nepal--Tibet border
+				\item \textbf{Gyirong Port} --- Nepal--China border crossing
+				at the Trishuli--Lhende Khola confluence
+				\item Crossing handled 30\% of all Nepal--China trade;
+				$>$100{,}000 crossings in H1 2026
+				\item Disaster struck a \textbf{45-mile stretch} of
+				river settlements
+				\item Bodies carried $\sim$240\,km into India
+			\end{itemize}
+			
+			\column{0.48\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 2: nepal_bagmati_province_map.png
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.5}{3.8}{nepal\_bagmati\_province\_map.png}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[nepal\_bagmati\_province\_map.png]}\\
+					Bagmati Province map showing the Trishuli River
+					corridor and affected districts: Rasuwa, Nuwakot,
+					Dhading, Gorkha, Chitwan}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Historical Context}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\begin{itemize}
+				\item \textbf{Since 1900:} Dozens of floods near Nepal--China border
+				\item \textbf{2015 Nepal Earthquakes:} Langtang Lirung glacier
+				collapse; 350+ killed in Langtang valley
+				\item \textbf{July 2025:} Glacial lake outburst washed away the
+				friendship bridge at Gyirong crossing
+				\item \textbf{Jan--Aug 2026:} Satellite imagery showed glacier
+				velocity accelerating weeks before collapse
+				\item Region described as a glacial
+				\textbf{``monitoring blind spot''}
+			\end{itemize}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 3: langtang_lirung_glacier_view.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{langtang\_lirung\_glacier\_view.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[langtang\_lirung\_glacier\_view.jpg]}\\
+					Langtang Lirung massif from Dhunche, Rasuwa
+					District --- site of the 2026 glacier collapse,
+					viewed from the south-east}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	%% ============================================================
+	\section{Cause --- Glacier Collapse}
+	%% ============================================================
+	
+	\begin{frame}{The Triggering Event}
+		\framesubtitle{Rock-Ice Avalanche, 26 August 2026, 08:37 NPT}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\begin{block}{Chain of Events}
+				\begin{enumerate}
+					\item \textbf{Glacier detaches} from Lirung massif at
+					$\sim$5{,}200\,m asl --- 1--1.3\,km wide section
+					\item \textbf{Free-falls} $\approx$1{,}200\,m to valley floor
+					\item Ice melts from impact $\rightarrow$
+					\textbf{massive meltwater surge}
+					\item Meltwater + debris $\rightarrow$
+					\textbf{long-runout debris flow}
+					\item Flow travels $\sim$100\,km downstream in hours
+					\item \textbf{Two barrier lakes} form post-collapse
+				\end{enumerate}
+			\end{block}
+			\vspace{4pt}
+			{\color{rpMuted}\footnotesize
+				USGS: seismic signal $M_s$\,5.2 generated \emph{by} the collapse,
+				not preceding it. GFZ recorded $M_w$\,5.7.}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 4: glacier_collapse_satellite_map.png
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{glacier\_collapse\_satellite\_map.png}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[glacier\_collapse\_satellite\_map.png]}\\
+					Satellite-derived map: collapse site (yellow reticle,
+					$\sim$5{,}200\,m), debris flow path (yellow arrow),
+					and inundation zone along Trishuli River}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{The Debris Flow in Numbers}
+		\begin{columns}[T]
+			\column{0.50\textwidth}
+			\begin{itemize}
+				\item Volume of collapsed material:
+				\textbf{197--492 million m$^3$}
+				\item Ice fell vertically $\approx$\textbf{1{,}200\,m}
+				\item Horizontal runout: up to \textbf{$\sim$100\,km}
+				\item Second landslide ($M_s$\,4.2) detected
+				\textbf{3 hours later}
+				\item \textbf{Gyirong Port} destroyed within minutes
+				\item 7 min after collapse: CCTV captured port destruction
+				\item No rainfall that morning --- purely
+				\textbf{cryospheric} event
+			\end{itemize}
+			
+			\column{0.47\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 5: debris_flow_trishuli_river_aerial.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{debris\_flow\_trishuli\_river\_aerial.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[debris\_flow\_trishuli\_river\_aerial.jpg]}\\
+					Aerial photograph of the debris-laden Trishuli
+					River post-collapse; brown sediment plume visible
+					throughout Rasuwa District}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Role of Climate Change}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\begin{itemize}
+				\item \textbf{Permafrost degradation:}
+				Warming weakens the cryospheric ``glue'' binding glaciers
+				to bedrock (A.\,C.\,Byers, Univ.\ Colorado Boulder)
+				\item Researchers (BBC, CNN, NPR) said climate change
+				\textbf{probably increased} likelihood of the event
+				\item \textit{NYT} researchers more cautious about direct
+				attribution; cited proximate causes
+				\item Glacier collapses \textbf{less frequent} than GLOFs
+				but \textbf{far more destructive}
+				\item Nepal FM Shisir Khanal called for
+				\textbf{global climate action}
+			\end{itemize}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 6: himalayan_glacier_retreat_comparison.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{himalayan\_glacier\_retreat\_comparison.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[himalayan\_glacier\_retreat\_comparison.jpg]}\\
+					Before-and-after satellite comparison of Langtang
+					Lirung glacier extent (2000 vs.\ 2026), illustrating
+					decades of cryospheric retreat from warming}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	%% ============================================================
+	\section{Early Warning Systems}
+	%% ============================================================
+	
+	\begin{frame}{Warning System --- What Went Wrong}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\footnotesize % Added footnotesize to make text smaller
+			\setlength{\itemsep}{2pt} % Tighter spacing between bullets
+			\textbf{Pre-existing System}
+			\begin{itemize}
+				\item China--Nepal joint flash flood early-warning system
+				operational for years
+				\item \textit{SCMP}: consistently prevented casualties
+				in previous events
+			\end{itemize}
+			
+			\vspace{4pt}
+			\textbf{Why It Failed in 2026}
+			\begin{itemize}
+				\item Monitors configured for \textbf{monsoon / perennial
+					floods}, not glacier collapses
+				\item Upstream stations \textbf{swept away before alerts}
+				could be sent
+				\item Region was a monitoring \textbf{``blind spot''}
+				(Stimson Center)
+				\item China's Tibet restrictions
+				\textbf{hampered cross-border data sharing}
+			\end{itemize}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 7: early_warning_monitoring_station.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{early\_warning\_monitoring\_station.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[early\_warning\_monitoring\_station.jpg]}\\
+					River-level monitoring station on the Trishuli
+					basin --- stations similar to this were destroyed
+					before downstream alerts could be relayed}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Timeline of Alerts --- 26 August 2026 (NPT)}
+		\begin{block}{}
+			\begin{tabular}{@{}ll@{}}
+				\toprule
+				\rowcolor{rpHighlightMid}
+				\textbf{Time (NPT)} & \textbf{Event} \\
+				\midrule
+				08:37 & Glacier collapse; seismic event ($M_s$\,5.2) detected worldwide\\
+				08:44 & CCTV captures Gyirong Port destroyed by floodwater \\
+				09:00 & Dept.\ Hydrology \& Meteorology notified by District Admin. \\
+				09:15 & First SMS alerts dispatched; 679{,}295 messages in 1 minute \\
+				\midrule
+				\multicolumn{2}{l}{{\color{rpLove}\small
+						$\Rightarrow$ Alert reached people \textbf{38 minutes} after collapse
+						--- too late for upstream communities}} \\
+				\bottomrule
+			\end{tabular}
+		\end{block}
+		
+		\vspace{6pt}
+		\begin{alertblock}{China's Pre-event Preparations --- And Why They Failed}
+			After 2025 floods: new flood walls, dikes, evacuation drills in Gyirong.
+			\textbf{The 2026 event overwhelmed all defences within minutes}
+			because the hazard type was entirely different.
+		\end{alertblock}
+	\end{frame}
+	
+	%% ============================================================
+	\section{Casualties \& Human Impact}
+	%% ============================================================
+	
+	\begin{frame}{Scale of Human Suffering}
+		\begin{columns}[T]
+			\column{0.50\textwidth}
+			\textbf{Nepal (as of 21 September 2026)}
+			\begin{itemize}
+				\item \textbf{1{,}451} deaths confirmed
+				\item \textbf{5{,}745} missing (636 foreign nationals,
+				35 countries)
+				\item \textbf{9{,}287} injured
+				\item Only 4\% of $\sim$900 recovered bodies identified
+				\item Bodies found as far as Nawalparasi (Nepal)
+				and Kushinagar, Uttar Pradesh (India)
+				\item 32{,}021 children impacted (UNICEF)
+				\item 157{,}050 women \& girls impacted (UN Women)
+			\end{itemize}
+			
+			\vspace{4pt}
+			\textbf{Tibet, China (as of 16 September 2026)}
+			\begin{itemize}
+				\item \textbf{43} deaths; \textbf{519} missing
+				\item 261 foreign nationals missing
+			\end{itemize}
+			
+			\column{0.47\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 8: rescue_operations_rasuwa_district.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{4.0}{rescue\_operations\_rasuwa\_district.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[rescue\_operations\_rasuwa\_district.jpg]}\\
+					Nepal Army personnel extracting survivors from
+					mud-filled debris in Rasuwa District, several
+					days after the initial flood event}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Vulnerable Populations}
+		\begin{columns}[T]
+			\column{0.50\textwidth}
+			\begin{block}{Children}
+				\begin{itemize}
+					\item 32{,}021 children impacted (UNICEF)
+					\item 2{,}600 children $<$5 needed severe-wasting treatment
+					\item 540 children separated from a parent
+					\item 102 children orphaned
+				\end{itemize}
+			\end{block}
+			
+			\vspace{4pt}
+			\begin{block}{Women \& Girls}
+				\begin{itemize}
+					\item 157{,}050 women \& girls impacted
+					\item 43{,}000 required urgent humanitarian aid
+					\item 10{,}500 pregnant / breastfeeding women needed
+					nutrition support
+				\end{itemize}
+			\end{block}
+			
+			\column{0.47\textwidth}
+			\begin{block}{Workers}
+				\begin{itemize}
+					\item 900+ from 12 hydropower projects missing
+					\item Upper Trishuli 1: 576 workers missing,
+					$\sim$300 trapped in tunnels
+					\item Nepal Army (7 Sep): 121 trapped in tunnels
+					\item 300 trade workers \& 200 tourism workers missing
+					\item 622 students unaccounted for
+				\end{itemize}
+			\end{block}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{International Casualties --- Selected Nations}
+		\small
+		\centering
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabular}{lcccc}
+			\toprule
+			\rowcolor{rpOverlay}
+			\textbf{Country} & \textbf{Deaths (CN)} &
+			\textbf{Deaths (NP)} &
+			\textbf{Missing (CN)} & \textbf{Missing (NP)} \\
+			\midrule
+			China     & -- & -- & 298 & 37  \\
+			India     & -- & -- & 49  & 189 \\
+			Nepal     & -- & -- & 104 & 127 \\
+			USA       & -- & -- & 18  & 65  \\
+			Malaysia  & -- & -- & 3   & 55  \\
+			Ukraine   & -- & -- & 1   & 54  \\
+			Australia & -- & -- & 6   & 35  \\
+			UK        & -- & -- & 15  & 32  \\
+			Latvia    & -- & -- & --  & 33  \\
+			Canada    & -- & -- & 6   & 30  \\
+			\midrule
+			\multicolumn{5}{l}{{\color{rpMuted}\footnotesize
+					+ 25 more nations affected; total 35 countries with nationals missing in Nepal}} \\
+			\bottomrule
+		\end{tabular}
+		\vspace{4pt}
+		\begin{alertblock}{}
+			\centering
+			77 Isha Foundation pilgrims from 19 nationalities were at
+			Gyirong Port at the time of the flood
+		\end{alertblock}
+	\end{frame}
+	
+	%% ============================================================
+	\section{Infrastructure \& Economic Damage}
+	%% ============================================================
+	
+	\begin{frame}{What Was Destroyed}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\textbf{Critical Infrastructure}
+			\begin{itemize}
+				\item \textbf{Gyirong Port} --- Nepal's primary road border crossing
+				(30\% of bilateral trade) --- \emph{completely destroyed}
+				\item Dozens of settlements along 45-mile river corridor
+				\item \textbf{12 hydropower projects} heavily damaged
+				\item Bridges, roads, and communication towers
+				\item Customs \& immigration offices at border
+			\end{itemize}
+			
+			\vspace{6pt}
+			\textbf{Economic Impact}
+			\begin{itemize}
+				\item Nepal: NPR 400B+ ($\approx$ USD 2.64B+)
+				\item China: CNY 450M+ ($\approx$ USD 67M+)
+				\item Billions in trade goods feared lost
+				\item Tourism sector severely disrupted at season start
+			\end{itemize}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 9: gyirong_port_ruins_post_flood.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{gyirong\_port\_ruins\_post\_flood.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[gyirong\_port\_ruins\_post\_flood.jpg]}\\
+					Ruins of Gyirong Port photographed from the Chinese
+					side; the once-busy trading hub buried entirely
+					under debris and sediment}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Barrier Lakes --- Secondary Flood Risk}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\begin{itemize}
+				\item Two \textbf{barrier lakes} formed after collapse
+				\item \textbf{Lake 1} (Chhochen Khola--Purepu Tsangpo
+				confluence):
+				\begin{itemize}
+					\item Volume: $\sim$2 million m$^3$
+					\item Expected inflow 3 million m$^3$ by 30 Aug
+					\item High breach probability (China warning, 27 Aug)
+					\item Overflowed slightly 28 Aug; rescue ops paused
+					\item \textbf{Largely empty by 30 Aug}
+				\end{itemize}
+				\item \textbf{Lake 2:} High-elevation; near collapse site;
+				monitored continuously
+				\item Fresh warnings 30 Aug after upstream flow increased
+			\end{itemize}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 10: barrier_lake_satellite_image.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{barrier\_lake\_satellite\_image.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[barrier\_lake\_satellite\_image.jpg]}\\
+					Sentinel-2 satellite image of the barrier lake at
+					the Chhochen Khola confluence (28 Aug 2026),
+					showing lake extent and the debris dam}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	%% ============================================================
+	\section{Response \& International Aid}
+	%% ============================================================
+	
+	\begin{frame}{Rescue Operations}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\textbf{Nepal}
+			\begin{itemize}
+				\item Nepal Army, Armed Police Force, Nepal Police deployed
+				\item Mass burials as identification overwhelmed morgue capacity
+				\item Tunnel-drilling at Upper Trishuli 1 hydropower project
+				\item Door-to-door evacuations across 5 districts
+				\item 1.6 million people requiring humanitarian assistance
+			\end{itemize}
+			
+			\vspace{6pt}
+			\textbf{China}
+			\begin{itemize}
+				\item Rescue ops \textbf{briefly paused} 28 Aug (lake risk)
+				\item Gyirong County teams deployed
+				\item 3D satellite imaging released for coordination
+			\end{itemize}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 11: nepal_army_rescue_helicopter.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{nepal\_army\_rescue\_helicopter.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[nepal\_army\_rescue\_helicopter.jpg]}\\
+					Nepal Army helicopter conducting airlift operations
+					over the Trishuli valley, evacuating survivors and
+					delivering emergency relief supplies}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{International Response}
+		\begin{columns}[T]
+			\column{0.55\textwidth}
+			\begin{itemize}
+				\item \textbf{35+ nations} coordinated with Nepal government
+				\item Australia, UK, USA, India issued emergency statements
+				and deployed embassy crisis teams
+				\item \textbf{UNICEF}, \textbf{UN Women}, \textbf{MSF}
+				deployed humanitarian response teams
+				\item UN Spokesperson Ste\-phane Dujarric issued
+				child nutrition emergency alert
+				\item Nepal MoFA set up daily situation-update briefings
+				\item Multiple bilateral aid packages offered
+				\item Nepal FM called for \textbf{global climate action}
+				and equitable adaptation financing
+			\end{itemize}
+			
+			\column{0.42\textwidth}
+			%% -------------------------------------------------------
+			%% FIGURE 12: international_aid_distribution_nepal.jpg
+			%% -------------------------------------------------------
+			\begin{center}
+				\centering
+				\dummyfig{5.3}{3.8}{international\_aid\_distribution\_nepal.jpg}
+				\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[international\_aid\_distribution\_nepal.jpg]}\\
+					UN-coordinated relief distribution at a temporary
+					displacement camp in Nuwakot District; tents, food
+					packages, and medical supplies in foreground}
+			\end{center}
+		\end{columns}
+	\end{frame}
+	
+	%% ============================================================
+	\section{Lessons \& Way Forward}
+	%% ============================================================
+	
+	\begin{frame}{Key Lessons}
+		\begin{columns}[T]
+			\column{0.48\textwidth}
+			\begin{block}{Warning System Gaps}
+				\begin{itemize}
+					\item Systems built for \textbf{monsoon floods} are blind
+					to \textbf{glacier collapse} signatures
+					\item Upstream sensors must be hardened against
+					the events they monitor
+					\item Political barriers to cross-border data sharing
+					\textbf{directly cost lives}
+				\end{itemize}
+			\end{block}
+			
+			\column{0.48\textwidth}
+			\begin{block}{Climate Resilience}
+				\begin{itemize}
+					\item Permafrost degradation is
+					\textbf{accelerating} across the Himalayas
+					\item Glacier collapses are rare but
+					\textbf{catastrophic}; low-probability events
+					must be planned for
+					\item Satellite glacier-velocity monitoring
+					\textbf{can provide weeks of lead time}
+				\end{itemize}
+			\end{block}
+		\end{columns}
+		
+		\vspace{8pt}
+		\begin{exampleblock}{Way Forward}
+			\centering
+			Multi-hazard EWS \textbullet\
+			Cross-border real-time monitoring \textbullet\
+			Glacier-velocity satellite surveillance \textbullet\
+			Climate-adaptive infrastructure \textbullet\
+			Regional disaster financing
+		\end{exampleblock}
+	\end{frame}
+	
+	\begin{frame}{Recommendations}
+		\begin{enumerate}
+			\item \textbf{Upgrade Early Warning Systems} --- integrate
+			glacier-specific sensors (seismic, GPS, SAR) alongside
+			conventional water-level gauges
+			\item \textbf{Strengthen Cross-Border Cooperation} --- China--Nepal
+			real-time data-sharing protocol with defined SLAs
+			\item \textbf{Satellite-Based Glacier Monitoring} --- near-daily
+			optical/SAR imagery; velocity anomaly auto-alerts
+			\item \textbf{Community-Level Preparedness} --- vertical evacuation
+			routes, community wardens, multilingual SMS systems
+			\item \textbf{Climate Finance} --- Nepal and frontline nations must
+			receive dedicated adaptation funds at COP
+			\item \textbf{Rethink Infrastructure Siting} --- hydropower projects
+			and border crossings must account for glacier-collapse
+			run-out zones
+		\end{enumerate}
+	\end{frame}
+	
+	%% ============================================================
+	\section*{Summary}
+	%% ============================================================
+	
+	{
+		\setbeamertemplate{footline}{}
+		\begin{frame}[plain]{Summary}
+			\begin{tikzpicture}[remember picture, overlay]
+				\fill[rpOverlay] (current page.south west)
+				rectangle (current page.north east);
+				\draw[rpLove, line width=2pt]
+				([yshift=0.5cm]current page.south west) --
+				([yshift=0.5cm]current page.south east);
+			\end{tikzpicture}
+			
+			\vspace{0.3cm}
+			\begin{columns}[T]
+				\column{0.60\textwidth}
+				\begin{itemize}
+					\item \textbf{26 Aug 2026:} Rock-ice avalanche off Langtang Lirung
+					triggers catastrophic Bhotekoshi floods
+					\item \textbf{1{,}494+ deaths, 6{,}264+ missing, 9{,}287+ injured}
+					across Nepal and Tibet
+					\item \textbf{1.6 million} people affected; USD 2.7B+ in damage
+					\item Early warning systems were \textbf{misconfigured} for
+					monsoon events, not glacier collapses
+					\item Climate change is \textbf{increasing the risk} of
+					cryospheric disasters in the Himalayas
+					\item Urgent need for \textbf{multi-hazard, cross-border
+						disaster preparedness}
+				\end{itemize}
+				
+				\column{0.37\textwidth}
+				%% -------------------------------------------------------
+				%% FIGURE 13: trishuli_valley_aftermath_panorama.jpg
+				%% -------------------------------------------------------
+				\begin{center}
+					\centering
+					\dummyfig{4.2}{3.8}{trishuli\_valley\_aftermath\_panorama.jpg}
+					\vspace{2pt}\par{\color{rpMuted}\tiny \textbf{[trishuli\_valley\_aftermath\_panorama.jpg]}\\
+						Panoramic view of the Trishuli valley post-disaster;
+						complete destruction of riverside settlements and
+						the brown debris field extending for kilometres}
+				\end{center}
+			\end{columns}
+			
+			\vspace{6pt}
+			\begin{center}
+				{\color{rpLove}\large\bfseries Thank You}\\[4pt]
+				{\color{rpSubtle}\small Questions \& Discussion}
+			\end{center}
+		\end{frame}
+	}
+	
+\end{document}

@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{Overview \& Key Statistics}{3}{0}{1}
+\beamer@sectionintoc {2}{Geography \& Background}{5}{0}{2}
+\beamer@sectionintoc {3}{Cause --- Glacier Collapse}{7}{0}{3}
+\beamer@sectionintoc {4}{Early Warning Systems}{10}{0}{4}
+\beamer@sectionintoc {5}{Casualties \& Human Impact}{12}{0}{5}
+\beamer@sectionintoc {6}{Infrastructure \& Economic Damage}{15}{0}{6}
+\beamer@sectionintoc {7}{Response \& International Aid}{17}{0}{7}
+\beamer@sectionintoc {8}{Lessons \& Way Forward}{19}{0}{8}

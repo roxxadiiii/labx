@@ -1,0 +1,27 @@
+\frametitle{Branch Commands}
+\begin{block}{Branch Management}
+			\begin{lstlisting}[language=bash]
+				# List branches
+				git branch
+				git branch -a  # Include remote branches
+				
+				# Create branch
+				git branch <branch-name>
+				
+				# Switch to branch
+				git checkout <branch-name>
+				# OR (Git 2.23+)
+				git switch <branch-name>
+				
+				# Create and switch
+				git checkout -b <branch-name>
+				git switch -c <branch-name>
+				
+				# Delete branch
+				git branch -d <branch-name>
+				git branch -D <branch-name>  # Force delete
+				
+				# Rename branch
+				git branch -m <old-name> <new-name>
+			\end{lstlisting}
+		\end{block}

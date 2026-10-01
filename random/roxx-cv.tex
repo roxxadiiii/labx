@@ -1,0 +1,236 @@
+\documentclass[8pt,a4paper]{article}
+
+\usepackage[a4paper, top=0.3in, bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage{tabularx}
+
+% --- Fonts & Colors ---
+\usepackage[default]{lato}   % Lato font
+\usepackage{fontawesome5}    % Icons
+\usepackage{xcolor}          % For colors
+
+% --- Custom Name Header ---
+\definecolor{lightname}{gray}{0.15} % Change 0.15 to 0.5 for a lighter gray
+\newcommand{\nameheader}[2]{%
+	{\Huge\textbf{\textcolor{black}{#1}}~\Huge\textcolor{lightname}{#2}}%
+}
+
+\setstretch{1.15}
+\pagestyle{empty}
+
+
+% cvsection named 
+
+\newlength{\sectiontitlewidth}
+\newcommand{\cvsection}[1]{%
+	%\vspace{0.2em}%
+	\noindent\settowidth{\sectiontitlewidth}{\textbf{\large\MakeUppercase{#1}}}%
+	\textbf{\large\MakeUppercase{#1}}\ \raisebox{0.5ex}{\rule{\dimexpr\linewidth-\sectiontitlewidth-1em}{1pt}}%
+	\vspace{0.5em}%
+}
+
+
+
+\newcommand{\educationentry}[4]{%
+	\noindent
+	\begin{tabularx}{\linewidth}{@{}p{2.5cm} X r@{}}
+		#1 & \textbf{#2} \par\vspace{2pt} \small #3 & \textbf{#4} \\
+	\end{tabularx}%
+	\vspace{2px}
+}
+
+
+\newcommand{\projectentry}[4]{%
+	\noindent
+	\begin{tabularx}{\linewidth}{@{}p{4cm} X r@{}}
+		#1 & \textbf{#2} \par\vspace{2pt} \small #3 & \textbf{#4} \\
+	\end{tabularx}%
+	\vspace{0.8em}%
+}
+
+
+\newcommand{\experienceentry}[4]{%
+	\noindent
+	\begin{tabularx}{\linewidth}{@{}p{2.5cm} X r@{}}
+		#1 & \textbf{#2} \par\vspace{2pt}%
+		\begin{itemize}[leftmargin=*, nosep, topsep=0pt, partopsep=0pt, itemsep=2pt]
+			#3
+		\end{itemize} & \textbf{#4} \\
+	\end{tabularx}%
+	\vspace{0.8em}%
+}
+
+
+\newcommand{\skillentry}[2]{%
+	\noindent
+	\begin{tabularx}{\linewidth}{@{}p{4cm} X@{}}
+		\textbf{#1} & #2 \\
+	\end{tabularx}%
+	\vspace{0.6em}%
+}
+
+
+
+
+
+
+\begin{document}
+	
+	\noindent
+	% --- LEFT SIDE: Name and Title ---
+	\begin{minipage}[t]{0.45\textwidth}
+		\vspace{0pt} % Top alignment fix
+		\nameheader{Aditya}{Kumar}\\[4pt]
+		{\large Developer $\sim$ Engineer}
+	\end{minipage}%
+	\hfill
+	% --- RIGHT SIDE: Contact Grid ---
+	\begin{minipage}[t]{0.53\textwidth}
+		\vspace{0pt} % Top alignment fix
+		\small
+		\begin{tabular}{@{}l@{\hspace{6pt}}l@{\hspace{20pt}}l@{\hspace{6pt}}l@{}}
+			\faGlobe      & portfolio.com         & \faEnvelope & \href{mailto:roxxadiiii@gmail.com}{roxxadiiii@gmail.com} \\
+			\faPhone      & \href{tel:+918789687907}{+91 8789687907}         & \faGithub     & \href{https://github.com/roxxadiiii/}{github.com/roxxadiiii} \\
+			\faMapMarker* & \href{https://share.google/EDNLe1YtIGVkSwz6W}{Gaya,India}         & \faLinkedin & \href{https://www.linkedin.com/in/roxxadiiii/}{/in/roxxadiiii/} \\
+		\end{tabular}
+	\end{minipage}
+	
+	\vspace{1.5em} % Space below the header
+	
+	%\cvsection{Summary}
+	
+	
+	\cvsection{CAREER OBJECTIVES}
+	
+	AI Master's student at Central University of South Bihar with a strong foundation in Python,Machine Learning,Deep Learning and Linux. Seeking to leverage hands-on research experience to drive innovation as a [Job Title] at [Company Name]. % for reseaarch
+	
+	
+	% To secure a role that will allow me to use my [Your Major] knowledge and skills to solve challenging problems at [Company Name].
+	% Computer Science student at [Your University] seeking a Software Engineering internship to apply my [e.g., Python, Java, C++] skills and develop scalable and innovative solutions at [Company Name].
+	% ai graduate student with experience in computer vision and deep learning, including working with satellite imagery at indian space research organisation (sac). skilled in object detection, pytorch, geospatial data processing, and end-to-end ml pipeline development
+	% graduate student in artificial intelligence with experience in machine learning, computer vision, and mobile applications. seeking an ai/ml intership to apply technical expertise and contribute to impactful projects
+	
+	
+	\cvsection{Education}
+	
+	\educationentry
+	{2025-present} % #1: Dates (Left column)
+	{Master of Science in Artificial Intelligence.} % #2: Degree Title (Bold)
+	{Relevant coursework:Deep Learning,Machine Learning,Social Network Analytics,Python,Software Engineering,Big Data Analytics} % #3: Description (Small text)
+	{Central University of South Bihar,Gaya} % #4: School Name (Right column, Bold)
+	
+	
+	\educationentry
+	{2021-2024} % #1: Dates (Left column)
+	{Bachelor of Computer Applications.} % #2: Degree Title (Bold)
+	{Gaya College,Gaya} % #3: Description (Small text)
+	{Magadh University,Gaya} % #4: School Name (Right column, Bold)
+	
+	%\educationentry
+	%{2019-2021} % #1: Dates (Left column)
+	%{Higher Secondary Certificate (Class 12), Science} % #2: Degree Title (Bold)
+	%{Gaya College,Gaya} % #3: Description (Small text)
+	%{Bihar School Examination Board,Patna} % #4: School Name (Right column, Bold)
+	
+	
+	%\educationentry
+	%{2018-2019} % #1: Dates (Left column)
+	%{Secondary School Certificate (Class 10)} % #2: Degree Title (Bold)
+	%{Gyan Bharti Public School,Gaya} % #3: Description (Small text)
+	%{Central Board of Secondary Education,New Delhi} % #4: School Name (Right column, Bold)
+	
+	\cvsection{Projects}
+	
+	\projectentry
+	{Python, Flask, Flask-CORS, Requests, dotenv, OpenWeatherMap} % #1: Category / Tech Stack (Left column)
+	{WeatherWise} % #2: Project Title (Bold)
+	{\begin{itemize}
+			\item Finalized the development of a full-stack weather dashboard with real-time weather data, GPS-based location detection, and 5-day
+			forecasting
+			\item Integrated OpenWeatherMap APIs and implemented caching and retry logic, and responsive data visualization with
+			Chart.js.
+			\item Developed a modern Flask-powered web application with location search, weather analytics, and user
+			preference management.
+	\end{itemize}} % #3: Description (Small text)
+	{\href{https://github.com/roxxadiiii/weatherwise}{Repo Link}} % #4: Link (Right column, Bold, Clickable)
+	\projectentry
+	{Technology} % #1: Category / Tech Stack (Left column)
+	{RoxxByte} % #2: Project Title (Bold)
+	{\begin{itemize}
+			\item Built and maintained a technical blog as a static site, using Zola with automated deployment and repository mirroring
+			workflows.
+			\item Implemented multilingual content management, search indexing, RSS feeds, and analytics integration.
+			\item Customized and extended the Duckquill theme to provide a streamlined developer-focused publishing work
+	\end{itemize}} % #3: Description (Small text)
+	{\href{https://github.com/roxxadiiii/roxxbyte}{Repo Link}} % #4: Link (Right column, Bold, Clickable)
+	
+	\projectentry
+	{Technology}
+	{Forge}
+	{
+	\begin{itemize}
+		\item Built my own arch linux binary package repo served from github pages for easy pacman install of some packages.
+		\item Set up CI/CD pipelines using github actions to automatically deploy the repo on commits, and using git LFS to store the binary packages (pkg.tar.zst)
+		\item Curated and maintained a diverse collection of packages (including AI frameworks and desktop environments), demonstrating proficiency in Linux system administration, shell scripting, and dependency management.
+		
+		\end{itemize}}
+	{\href{https://github.com/link}{github.com/link}}
+	
+	\projectentry
+	{Technology}
+	{My project 2}
+	{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.}
+	{\href{https://github.com/link}{github.com/link}}
+
+	
+	
+	%\cvsection{Experience}
+	
+	%\experienceentry
+	%{X/2023 - X/2023 \\ \small\textit{scholarship holder}} % #1: Dates (and optional sub-text)
+	%{Lorem ipsum dolor sit amet, consectetur adipiscing elit.} % #2: Job Title (Bold)
+	%{ % #3: Bullet Points (Use standard \item)
+	%	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+	%	\item Curabitur dictum gravida mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna.
+	%	\item SQL \ \ / \ \ Excel
+	%}
+	%{Company} % #4: Company Name (Right aligned)
+	
+	%\experienceentry
+	%{X/2023 - X/2023}
+	%{Another Job Title}
+	%{
+	%	\item Another achievement goes here.
+	%	\item And another one.
+	%}
+	%{Company}
+	
+	
+	\cvsection{Skills}
+	
+	\skillentry
+	{Languages:} % #1: Category Label (Bold, left column)
+	{Python, SQL, C, C++} % #2: Skills List (Wraps automatically)
+	
+	\skillentry
+	{Frameworks \& Libraries:}
+	{PyTorch, TensorFlow, Scikit-learn, Pandas, NumPy, Flask, FastAPI, FastAPI}
+	
+	\skillentry
+	{Cloud \& DevOps:}
+	{Docker, GitHub Actions, GitLab CI}
+	
+	\skillentry
+	{Databases:}
+	{MySQL}
+	
+	\skillentry{Tools:}{Linux, Git, Bash, GitHub, Codeberg, Jupyter, Postman}
+	
+	\skillentry{Concepts:}{Machine Learning, Deep Learning, NLP, Computer Vision, Reinforcement Learning, Data Structures \& Algorithms}
+\end{document}
